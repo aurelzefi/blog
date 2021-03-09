@@ -28,6 +28,11 @@ class GetPostsRequest extends FormRequest
         ];
     }
 
+    /**
+     * Get the sort attribute from the request.
+     *
+     * @return string
+     */
     public function getSort()
     {
         return in_array($this->input('sort'), ['asc', 'desc']) ? $this->input('sort') : 'desc';
