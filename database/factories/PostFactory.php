@@ -24,7 +24,7 @@ class PostFactory extends Factory
     {
         return [
             'user_id' => $this->faker->randomElement([User::factory(), null]),
-            'title' => $this->faker->words(rand(1, 4), true),
+            'title' => $this->faker->sentence,
             'description' => $this->faker->text,
             'published_at' => $this->faker->dateTimeThisMonth,
         ];
