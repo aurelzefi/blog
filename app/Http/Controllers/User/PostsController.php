@@ -15,7 +15,7 @@ class PostsController extends Controller
      */
     public function __invoke(GetPostsRequest $request)
     {
-        $posts = $request->user()->posts()->orderBy(
+        $posts = $request->user()->posts()->with('user')->orderBy(
             'published_at', $request->getSort()
         )->paginate()->withQueryString();
 
