@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PostsController;
+use App\Http\Controllers\User\PostsController as UserPostsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PostsController::class, 'index'])->name('posts.index');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
+
+Route::get('/user/posts', [UserPostsController::class, 'index'])->name('user.posts.index');
+Route::get('/user/posts/create', [UserPostsController::class, 'create'])->name('user.posts.create');
+Route::post('/user/posts', [UserPostsController::class, 'store'])->name('user.posts.store');
