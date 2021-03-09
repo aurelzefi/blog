@@ -15,15 +15,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::factory()->create([
-            'name' => 'Aurel Zefi',
-            'email' => 'aurelzefi1994@gmail.com',
+        $users = User::factory()->createMany([
+            [
+                'name' => 'Admin',
+                'email' => 'admin@example.com',
+            ],
+            [
+                'name' => 'Aurel Zefi',
+                'email' => 'aurelzefi1994@gmail.com',
+            ],
         ]);
 
-        Post::factory(rand(0, 5))->for($user)->create();
-
-        User::factory(10)->create()->each(function (User $user) {
-            Post::factory(rand(0, 5))->for($user)->create();
+        User::factory(10)->create()->merge($users)->each(function (User $user) {
+            Post::factory(rand(1, 10))->for($user)->create();
         });
     }
 }

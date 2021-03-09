@@ -23,7 +23,7 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => $this->faker->randomElement([User::factory(), null]),
+            'user_id' => User::factory(),
             'title' => $this->faker->sentence,
             'description' => $this->faker->text,
             'published_at' => $this->faker->dateTimeThisMonth,

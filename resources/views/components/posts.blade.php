@@ -21,7 +21,7 @@
                         </span>
 
                         <span class="block mt-1 text-sm text-gray-700">
-                            {{ __('Posted by :user', ['user' => $post->user ? $post->user->name : 'Admin']) }}
+                            {{ __('Posted by :user', ['user' => $post->user->name]) }}
                         </span>
                     </div>
 

@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Models\Post;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -40,8 +40,8 @@ class FetchExternalPosts implements ShouldQueue
                 'description' => $post['description'],
                 'published_at' => $post['publication_date'],
             ];
-        })->toArray();
+        });
 
-        Post::insert($posts);
+        User::findAdmin()->posts()->createMany($posts);
     }
 }
