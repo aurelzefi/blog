@@ -45,5 +45,5 @@ The job is queued, so in a production environment there will be no performance i
 For your convenience, I have created an artisan command, so you can run the job manually during testing.
 
 ```
-php artisan fetch:external-posts
+php artisan external-posts:fetch
 ```
