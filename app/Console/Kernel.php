@@ -27,7 +27,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
 
-        $schedule->job(FetchExternalPosts::class)->everyTwoHours();
+        $schedule->job(new FetchExternalPosts())->everyTwoHours();
     }
 
     /**
