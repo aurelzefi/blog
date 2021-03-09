@@ -1,7 +1,7 @@
 <div>
     <div class="flex justify-end">
         <form method="GET" class="mb-4">
-            <x-select :options="['desc' => __('Latest To First'), 'asc' => __('First To Latest')]" :current="$sort" />
+            <x-select name="sort" :options="['desc' => __('Latest To First'), 'asc' => __('First To Latest')]" :current="$sort" />
 
             <input type="hidden" name="page" value="{{ $posts->currentPage() }}" />
 
