@@ -21,6 +21,7 @@ class PostsController extends Controller
 
         return view('user.posts.index', [
             'posts' => $posts,
+            'sort' => $sort,
         ]);
     }
 
