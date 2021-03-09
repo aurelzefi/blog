@@ -32,14 +32,16 @@ class FetchExternalPosts implements ShouldQueue
      */
     public function handle()
     {
-        $data = Http::get('https://sq1-api-test.herokuapp.com/posts')->json('data');
+        $posts = Http::get('https://sq1-api-test.herokuapp.com/posts')->json('data');
 
-        collect($data)->each(function ($post) {
-            Post::create([
+        $posts = collect($posts)->map(function ($post) {
+            return [
                 'title' => $post['title'],
                 'description' => $post['description'],
                 'published_at' => $post['publication_date'],
-            ]);
-        });
+            ];
+        })->toArray();
+
+        Post::insert($posts);
     }
 }

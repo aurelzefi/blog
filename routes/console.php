@@ -19,6 +19,8 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
 
-Artisan::command('posts:fetch', function () {
+Artisan::command('fetch:external-posts', function () {
     dispatch(New FetchExternalPosts());
+
+    $this->info('External posts have been fetched successfully.');
 })->purpose('Fetch external posts');

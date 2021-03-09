@@ -15,14 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', PostsController::class)->name('posts.index');
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/', [PostsController::class, 'index'])->name('posts.index');
 
 require __DIR__.'/auth.php';
 
-Route::get('/user/posts', [UserPostsController::class, 'index'])->name('user.posts.index');
-Route::get('/user/posts/create', [UserPostsController::class, 'create'])->name('user.posts.create');
-Route::post('/user/posts', [UserPostsController::class, 'store'])->name('user.posts.store');
+Route::resource('posts', PostsController::class)->only(['create', 'store']);
+
+Route::get('/user/posts', UserPostsController::class)->name('user.posts.index');
