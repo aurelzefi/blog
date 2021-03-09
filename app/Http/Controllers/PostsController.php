@@ -55,6 +55,6 @@ class PostsController extends Controller
             'published_at' => now(),
         ]);
 
-        return redirect()->route('user.posts.index');
+        return redirect()->route('posts.index');
     }
 }
