@@ -1,15 +1,7 @@
 <div>
     <div class="flex justify-end">
         <form method="GET" class="mb-4">
-            <select name="sort" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                <option value="desc" {{ $sort === 'desc' ? 'selected' : '' }}>
-                    {{ __('Latest To First')  }}
-                </option>
-
-                <option value="asc" {{ $sort === 'asc' ? 'selected' : '' }}>
-                    {{ __('First To Latest')  }}
-                </option>
-            </select>
+            <x-select :options="['desc' => __('Latest To First'), 'asc' => __('First To Latest')]" :current="$sort" />
 
             <input type="hidden" name="page" value="{{ $posts->currentPage() }}" />
 

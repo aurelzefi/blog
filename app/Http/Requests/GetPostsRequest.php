@@ -30,8 +30,6 @@ class GetPostsRequest extends FormRequest
 
     public function getSort()
     {
-        return in_array($this->input('sort'), ['asc', 'desc'])
-            ? $this->input('sort')
-            : 'desc';
+        return in_array($this->input('sort'), ['asc', 'desc']) ? $this->input('sort') : 'desc';
     }
 }
