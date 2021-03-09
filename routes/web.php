@@ -19,6 +19,10 @@ Route::get('/', [PostsController::class, 'index'])->name('posts.index');
 
 require __DIR__.'/auth.php';
 
-Route::resource('posts', PostsController::class)->only(['create', 'store']);
+Route::resource('posts', PostsController::class)
+    ->only(['create', 'store'])
+    ->middleware('auth');
 
-Route::get('/user/posts', UserPostsController::class)->name('user.posts.index');
+Route::get('/user/posts', UserPostsController::class)
+    ->name('user.posts.index')
+    ->middleware('auth');
