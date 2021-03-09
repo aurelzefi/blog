@@ -40,9 +40,9 @@ You will have a user with the following credentials available:
 - password: password
 
 The posts from the external platform will be fetched by a queued job (`App\Jobs\FetchExternalPosts`), which is configured to run every two hours.
-Since the job is queued, in a production environment it will run in the background and there will be no performance issues. 
+The job is queued, so in a production environment there will be no performance issues.
 
-For your convenience, I have created an artisan command so you can run the job manually during testing.
+For your convenience, I have created an artisan command, so you can run the job manually during testing.
 
 ```
 php artisan fetch:external-posts
