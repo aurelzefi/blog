@@ -13,8 +13,12 @@
                 @auth
                     <!-- Navigation Links -->
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
+                            {{ __('Home') }}
+                        </x-nav-link>
+
                         <x-nav-link :href="route('user.posts.index')" :active="request()->routeIs('user.posts.index')">
-                            {{ __('Posts') }}
+                            {{ __('Your Posts') }}
                         </x-nav-link>
 
                         <x-nav-link :href="route('posts.create')" :active="request()->routeIs('posts.create')">
@@ -83,11 +87,21 @@
 
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
-        </div>
+        @auth
+            <div class="pt-2 pb-3 space-y-1">
+                <x-responsive-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
+                    {{ __('Home') }}
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link :href="route('user.posts.index')" :active="request()->routeIs('user.posts.index')">
+                    {{ __('Posts') }}
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link :href="route('posts.create')" :active="request()->routeIs('posts.create')">
+                    {{ __('Create New Post') }}
+                </x-responsive-nav-link>
+            </div>
+        @endauth
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">

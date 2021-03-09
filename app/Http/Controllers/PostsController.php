@@ -16,7 +16,9 @@ class PostsController extends Controller
      */
     public function index(GetPostsRequest $request)
     {
-        $posts = Post::orderBy('published_at', $request->getSort())->paginate();
+        $posts = Post::orderBy(
+            'published_at', $request->getSort()
+        )->paginate()->withQueryString();
 
         return view('posts.index', [
             'posts' => $posts,

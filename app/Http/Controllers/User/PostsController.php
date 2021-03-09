@@ -15,9 +15,11 @@ class PostsController extends Controller
      */
     public function __invoke(GetPostsRequest $request)
     {
-        $posts = $request->user()->posts()->orderBy('published_at', $request->getSort())->paginate();
+        $posts = $request->user()->posts()->orderBy(
+            'published_at', $request->getSort()
+        )->paginate()->withQueryString();
 
-        return view('posts.index', [
+        return view('user.posts.index', [
             'posts' => $posts,
             'sort' => $request->getSort(),
         ]);
