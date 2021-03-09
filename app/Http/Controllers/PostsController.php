@@ -2,26 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\GetPostsRequest;
 use App\Models\Post;
-use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\GetPostsRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request)
+    public function __invoke(GetPostsRequest $request)
     {
-        $sort = in_array($request->input('sort'), ['asc', 'desc']) ? $request->input('sort') : 'desc';
-
-        $posts = Post::orderBy('published_at', $sort)->paginate();
+        $posts = Post::orderBy('published_at', $request->getSort())->paginate();
 
         return view('posts.index', [
             'posts' => $posts,
-            'sort' => $sort,
+            'sort' => $request->getSort(),
         ]);
     }
 }

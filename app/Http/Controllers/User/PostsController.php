@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\GetPostsRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -11,17 +12,16 @@ class PostsController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \App\Http\Requests\GetPostsRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(GetPostsRequest $request)
     {
-        $sort = in_array($request->input('sort'), ['asc', 'desc']) ? $request->input('sort') : 'desc';
-
-        $posts = Post::orderBy('published_at', $sort)->paginate();
+        $posts = Post::orderBy('published_at', $request->getSort())->paginate();
 
         return view('user.posts.index', [
             'posts' => $posts,
-            'sort' => $sort,
+            'sort' => $request->getSort(),
         ]);
     }
 
